@@ -1,17 +1,9 @@
 class Solution {
-    fun solution(s: String, n: Int): String {
-        var answer = ""
-        
-        for(char in s){
-            if(char in 'a'..'z'){
-                answer+='a'+(char.code-'a'.code+n)%26
-            }else if(char in 'A'..'Z'){
-                answer+='A'+(char.code-'A'.code+n)%26
-            }else{
-                answer+=' '
+    fun solution(s: String, n: Int): String =
+        s.map {
+            when {
+                it.isLowerCase() -> ('a' + (it - 'a' + n) % 26).toChar()
+                it.isUpperCase() -> ('A' + (it - 'A' + n) % 26).toChar()
+                else -> ' '
             }
-        }
-        
-        return answer
-    }
-}
+        }.joinToString ("")
